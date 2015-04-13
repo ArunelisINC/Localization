@@ -1,0 +1,68 @@
+Review of 03b078e79525e5967b31654c438e67d7bcdb7b83
+
+
+*
+Overview:
+
+Overall it looks good, this is first such task, it is more or less done correctly, Classes and Methods are small (very good thing).
+About my suggestions bellow - it might seem harsh at first, but keep in mind that many of those points are something I received from code reviews myself but a lot later in my career than you do and there was some time before I could naturally use it, so feel lucky to be able to learn a lot earlier, because most students wont be aware of many of such things (its called "Clean Code").
+
+
+*
+Core:
+
+1. Program.cs: Magic values: avoid "magic values" (magic strings in this case - "exit"). If this is constant, create one or use enum. Never use magic values, because a. you might make mistake when somewhere, b. changing value requires changing it everywhere in all classes, c. it might not be clear what it is ( e.g. if (code == 1) vs. if (code == CODES_ACCEPT) - which one is more clear when reading code?).
+
+2. You are not using Object-Oriented-Programing: static methods should only be used as exception, for special circumstances. E.g. main() method, Utility classes that can be used as helpers for common tasks - date methods; string methods... Use non-static methods and instantiate classes with constructor!
+
+3. Naming problems: All names (variable, method, class) should explain itself (be self-explanatory). If Class/Method cannot explain itself, it should be split into smaller Classes/Methods (this is perfect rule, not always possible, but you should always strive for this). Use use "CamelCase" in C# for naming everything, Classes and Methods start with upper-case, variables/parameters - lower-case (C# convention, different in Java).
+
+3a. Method names:  message(), reading() - tells nothing about what they do. Method names should be verbs (veiksmazodziai). Examples of good method names: ReadFile(), SendEmail(), HandlePayment()... Examples of bad method names: HandlePaymentAndReadFileAndSendEmail() - should be split into 3 methods that do one thing!
+reading() - method also doeas to much it reads and parses/creates properties. Properties creation should probably have its own class.
+3b. Class names are misleading: "Controller" has nothing in common with concept of controller, even if it did, its too general. Avoid general names like "Utility", "Handler", be specific "DateUtil", "EmailHandler". Similar to method names - tell what class "IS" (noun - daiktavardis).
+Reading - although its better, but "class is Reading" sounds strange, who the hell is "Reading". Maybe FileReader, PropertiesReader, but not Reading. Should be noun and explain what it is reading, otherwise "Reader" must be able to read many files, not one specific.
+
+
+*
+Minor:
+1. Classes could be grouped inside single root folder/namespace. Now its a bit confusing since many files (that are not your code files) are present in root folder.
+
+2. Reading.reading(), Controller.message(): (and all other places): this is only C# convention, but public methods should be upper case (see c# native library: line.Split(), Console.ReadLine()).
+
+3. Method signatures: "static void Main()", "internal static void message()", "static public List<Properties> reading()" - not sure why all are different (public vs. internal vs. not-specified, then ordering inconsistent: then "static public" vs. "internal static"). Is there any reason for that? If no you should be consistent. 90% of the time you probably want to use public and private. Private if method is used only inside the class, public - method will be called by other classes.
+
+
+*
+Would be amazing:
+
+1. Reading.reading(): can replace foreach construct and file.Add(new Properties()... with Linq. It would be more elegant and more readable. Would also make you look smarter :)
+
+
+*
+Interesting:
+
+1. Program.cs: do-while: somewhat original as not many seem to be using this, not sure why. Have no opinion strong opinion, think its OK :)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
