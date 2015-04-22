@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Užduotis1
 {
-    class Controller
+    class MessageChecker
     {
 
+        public MessageChecker()
+        {
 
+        }
 
-
-        internal static void message(string code, List<Properties> file)
+        public void Message(string code, List<Properties> file)
         {
 
             Boolean messageExists = false;
@@ -31,5 +33,6 @@ namespace Užduotis1
                 Console.WriteLine("Tokios žinutės nėra");
             }
         }
+
     }
 }

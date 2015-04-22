@@ -12,25 +12,15 @@ namespace Užduotis1
         static void Main()
         {
 
-            List<Properties> file = Reading.reading();
+            TextReader reader = new TextReader();
+            StringTypeComparison compare = new StringTypeComparison();
+            MessageChecker message = new MessageChecker();
+            UserInterface ui = new UserInterface();
+            List<Properties> file = reader.TextReading();
 
-
-            string code;
-            do
-            {
-                Console.WriteLine("Įveskite komandą (exit to leave):");
-                code = Console.ReadLine();
-                Controller.message(code, file);
-
-                if (code != "exit")
-                {
-                    Console.Read();
-                }
-
-                Console.Clear();
-
-            } while (code != "exit");
+            ui.Communicating(file, compare, message);
 
         }
+
     }
 }

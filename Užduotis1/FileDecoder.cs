@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace Užduotis1
 {
-    class Reading
+    class FileDecoder
     {
 
-        static public List<Properties> reading()
+        public FileDecoder()
         {
 
-            List<Properties> file = new List<Properties>();
+        }
 
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\aruna_000\Desktop\Projects\Užduotis\Props/message.properties.txt");
+        public List<Properties> Decoding(string[] lines)
+        {
+            List<Properties> file = new List<Properties>();
 
             foreach (string line in lines)
             {
@@ -23,12 +25,12 @@ namespace Užduotis1
 
                 file.Add(new Properties()
                 {
-                    messageCode=split[0],
-                    message=split[1]
+                    messageCode = split[0],
+                    message = split[1]
                 });
 
             }
-            
+
             return file;
 
         }
