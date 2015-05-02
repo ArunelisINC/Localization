@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Užduotis1.ArunelisINC.Utils;
+using Užduotis1.ArunelisINC.File;
+using Užduotis1.ArunelisINC.Message;
 
-namespace Užduotis1
-{
-    class FileDecoder
+namespace Užduotis1.ArunelisINC.Message{
+    class PropertySpliter
     {
 
-        public FileDecoder()
+        public List<Properties> SplitLines(string[] lines)
         {
-
-        }
-
-        public List<Properties> Decoding(string[] lines)
-        {
-            List<Properties> file = new List<Properties>();
+            List<Properties> properties = new List<Properties>();
 
             foreach (string line in lines)
             {
 
                 string[] split = line.Split('=');
 
-                file.Add(new Properties()
+                properties.Add(new Properties()
                 {
                     messageCode = split[0],
                     message = split[1]
@@ -31,7 +28,7 @@ namespace Užduotis1
 
             }
 
-            return file;
+            return properties;
 
         }
 
